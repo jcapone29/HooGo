@@ -11,12 +11,12 @@ using Service.HooGoin;
 
 namespace Service.Repositories
 {
-    class HooGoinRepository
+   public class HooGoinRepository
     {
 
-        public async Task<IEnumerable<UserInfo>>GetUserInfo(string username, string password)
+        public async Task<IEnumerable<UserInfo>>GetUserInfo(string username)
         {
-            var sql = " SELECT * FROM tblUserInfo WHERE  WHERE [UserID] = " + username;
+            var sql = " SELECT * FROM tblUserInfo  WHERE [UserID] = " + username;
 
             using (var conn = RepositoryBase.GetConnection())
             {
@@ -24,7 +24,7 @@ namespace Service.Repositories
             }
         }
 
-        public async Task<IEnumerable<UserInfo>> CreaeNewUser(string usernmae, string password)
+        public async Task<IEnumerable<UserInfo>> CreaeNewUser(string usernmae)
         {
             var sql = "";
 

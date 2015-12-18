@@ -10,7 +10,7 @@ using Service;
 
 namespace Service.Repositories
 {
-    class RepositoryBase
+   public class RepositoryBase
     {
         public static IDbConnection GetConnection()
         {
