@@ -13,5 +13,8 @@ namespace Service
 {
     public class WiGoService
     {
+
+
+
     }
 }
