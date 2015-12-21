@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>MarketIntelligenceData</id>
+        <version>1.0.4</version>
+        <authors>Genscape</authors>
+        <owners>Genscape</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>MarketIntelligenceData Service, gloablized REST API for all Market Intel Data</description>
+    </metadata>
+      <files>
+      <file src="**\*.*" exclude="**\*.cs;**\*.ts;*.csproj;*.user;node_modules\**\*.*;obj\**\*.*;Properties\**\*.*;TransformWebConfig\**\*.*"/>
+    </files>
+</package>

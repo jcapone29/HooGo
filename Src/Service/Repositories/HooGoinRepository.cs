@@ -16,7 +16,7 @@ namespace Service.Repositories
 
         public async Task<IEnumerable<UserInfo>>GetUserInfo(string username)
         {
-            var sql = " SELECT * FROM tblUserInfo  WHERE [UserID] = " + username;
+            var sql = " SELECT * FROM tblUserInfo  WHERE [Username] = '" + username + "'";
 
             using (var conn = RepositoryBase.GetConnection())
             {
