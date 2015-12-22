@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Service;
+using Service.HooGoin;
 using Service.Repositories;
 
 namespace WiGoAPI.Controllers
@@ -15,11 +16,14 @@ namespace WiGoAPI.Controllers
             _service = new WiGoService();
         }
 
+        [HttpPost]
         [Route("userinfo")]
-        public async Task<IHttpActionResult> GetUserInfo(string username)
+        public async Task<IHttpActionResult> GetUserInfo(UserInfo info)
         {
-            return Ok(await _service.GetUserInfo(username));
+
+            return Ok(await _service.GetUserInfo(info));
         }
+
 
     }
 }

@@ -14,15 +14,32 @@ namespace Service.Repositories
    public class HooGoinRepository
     {
 
-        public async Task<IEnumerable<UserInfo>>GetUserInfo(string username)
+        public async Task<IEnumerable<UserInfo>> GetUserInfo(UserInfo info)
         {
-            var sql = " SELECT * FROM tblUserInfo  WHERE [Username] = '" + username + "'";
+            var sql = "SELECT * FROM tblUserInfo  WHERE [Username] = '" + info.UserName + "' and [PasswordHash] = '" + info.Password + "'";
 
             using (var conn = RepositoryBase.GetConnection())
             {
                 return await conn.QueryAsync<UserInfo>(sql);
             }
         }
+
+        //public bool GetUserInfo(UserInfo info)
+        //{
+        //    var sql = "select case when [Username] = '" + info.UserName + "' and [PasswordHash] = '" + info.Password + "'" + "then 'True' else 'False' end from [dbo].[tblUserInfo]";
+        //    bool login;
+
+        //    using (var conn = RepositoryBase.GetConnection())
+        //    {
+        //        SqlCommand cmd = new SqlCommand(sql);
+
+        //        login = ((bool?)cmd.ExecuteScalar()).GetValueOrDefault();
+
+
+        //    }
+
+        //    return login;
+        //}
 
         public async Task<IEnumerable<UserInfo>> CreaeNewUser(string usernmae)
         {

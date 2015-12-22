@@ -21,9 +21,9 @@ namespace Service
             _hooRepo = new HooGoinRepository();
         }
 
-        public async Task<IEnumerable<UserInfo>> GetUserInfo(string username)
+        public async Task<IEnumerable<UserInfo>> GetUserInfo(UserInfo info)
         {
-            return await _hooRepo.GetUserInfo(username);
+            return await _hooRepo.GetUserInfo(info);
         }
 
 
