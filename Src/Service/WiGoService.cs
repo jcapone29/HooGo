@@ -26,6 +26,20 @@ namespace Service
             return await _hooRepo.GetUserInfo(info);
         }
 
+        public async Task<IEnumerable<LocationList>>GetPlaces()
+        {
+            return await _hooRepo.GetPlaces();
+        }
+        public async Task<IEnumerable<UserList>> GetUserList()
+        {
+            return await _hooRepo.GetUserList();
+        }
 
+        public bool CreaeNewUser(UserInfo info)
+        {
+            bool success = _hooRepo.CreateNewUser(info);
+
+            return success;
+        }
     }
 }

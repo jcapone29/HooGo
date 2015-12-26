@@ -24,6 +24,27 @@ namespace WiGoAPI.Controllers
             return Ok(await _service.GetUserInfo(info));
         }
 
+        [Route("places")]
+        public async Task<IHttpActionResult> GetPlaces()
+        {
+
+            return Ok(await _service.GetPlaces());
+        }
+
+        [Route("users")]
+        public async Task<IHttpActionResult> GetUserList()
+        {
+            return Ok(await _service.GetUserList());
+        }
+
+        [HttpPost]
+        [Route("newUser")]
+        public bool CreaeNewUser([FromBody] UserInfo info)
+        {
+            bool success;
+            success = _service.CreaeNewUser(info);
+            return success;
+        }
 
     }
 }

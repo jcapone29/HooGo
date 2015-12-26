@@ -24,31 +24,55 @@ namespace Service.Repositories
             }
         }
 
-        //public bool GetUserInfo(UserInfo info)
-        //{
-        //    var sql = "select case when [Username] = '" + info.UserName + "' and [PasswordHash] = '" + info.Password + "'" + "then 'True' else 'False' end from [dbo].[tblUserInfo]";
-        //    bool login;
 
-        //    using (var conn = RepositoryBase.GetConnection())
-        //    {
-        //        SqlCommand cmd = new SqlCommand(sql);
-
-        //        login = ((bool?)cmd.ExecuteScalar()).GetValueOrDefault();
-
-
-        //    }
-
-        //    return login;
-        //}
-
-        public async Task<IEnumerable<UserInfo>> CreaeNewUser(string usernmae)
+        public async Task<IEnumerable<LocationList>> GetPlaces()
         {
-            var sql = "";
+            var sql = "SELECT DISTINCT a.businessname, a.descript, e.neighborhood, e.address, e.city, e.state, e.zip " +
+                " FROM [dbo].[tblbostonactive] a INNER JOIN [dbo].[tblbostonentertainment] e ON e.dbaname = a.businessname ";
 
             using (var conn = RepositoryBase.GetConnection())
             {
-                return await conn.QueryAsync<UserInfo>(sql);
+                return await conn.QueryAsync<LocationList>(sql);
             }
+        }
+
+        public async Task<IEnumerable<UserList>> GetUserList()
+        {
+            var sql = "select distinct username from [dbo].[tblUserInfo]";
+
+            using (var conn = RepositoryBase.GetConnection())
+            {
+                return await conn.QueryAsync<UserList>(sql);
+            }
+        }
+
+
+        public bool CreateNewUser(UserInfo info)
+        {
+            try
+            {
+                var sql = "insert into [dbo].[tblUserInfo] (Username, PasswordHash, FirstName, LastName, Email, Phone#, Active) " +
+                    " values ('" + info.UserName + "','" + info.Password + "','" + info.FirstName + "','" + info.LastName + "','" + info.Email + "','" + info.Phone + "', 1 )";
+
+                
+
+                using (var conn = RepositoryBase.GetConnection())
+                {
+                    SqlConnection con = new SqlConnection(conn.ConnectionString);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+          
         }
 
         public async Task<IEnumerable<FreindGroups>> GetUserGroups(int userid)
