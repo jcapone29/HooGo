@@ -27,8 +27,8 @@ namespace Service.Repositories
 
         public async Task<IEnumerable<LocationList>> GetPlaces()
         {
-            var sql = "SELECT DISTINCT a.businessname, a.descript, e.neighborhood, e.address, e.city, e.state, e.zip " +
-                " FROM [dbo].[tblbostonactive] a INNER JOIN [dbo].[tblbostonentertainment] e ON e.dbaname = a.businessname ";
+            var sql = "SELECT DISTINCT a.businessname, a.descript, e.neighborhood, e.address, e.city, e.state, e.zip, e.LICCATDESC, e.ENDTIME, e.Location" +
+                " FROM [dbo].[tblbostonactive] a INNER JOIN [dbo].[tblbostonentertainment] e ON e.dbaname = a.businessname where e.ENDTIME != 'NULL'";
 
             using (var conn = RepositoryBase.GetConnection())
             {
@@ -75,9 +75,20 @@ namespace Service.Repositories
           
         }
 
-        public async Task<IEnumerable<FreindGroups>> GetUserGroups(int userid)
+        public async Task<IEnumerable<NewEvent>> CreateNewEvent(NewEvent eve)
         {
             var sql = "";
+
+            using (var conn = RepositoryBase.GetConnection())
+            {
+                return await conn.QueryAsync<NewEvent>(sql);
+            }
+        }
+
+
+        public async Task<IEnumerable<FreindGroups>> GetUserGroups(int userid)
+        {
+            var sql = "select * from [dbo].[tblFriendGroups] where userid = " + userid;
 
             using (var conn = RepositoryBase.GetConnection())
             {

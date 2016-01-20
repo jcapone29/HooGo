@@ -35,6 +35,16 @@ namespace Service
             return await _hooRepo.GetUserList();
         }
 
+        public async Task<IEnumerable<NewEvent>> CreateNewEvent(NewEvent eve)
+        {
+            return await _hooRepo.CreateNewEvent(eve);
+        }
+
+        public async Task<IEnumerable<FreindGroups>> GetUserGroups(int userid)
+        {
+            return await _hooRepo.GetUserGroups(userid);
+        }
+
         public bool CreaeNewUser(UserInfo info)
         {
             bool success = _hooRepo.CreateNewUser(info);

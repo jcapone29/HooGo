@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="HooGoin\EventList.cs" />
     <Compile Include="HooGoin\LocationList.cs" />
+    <Compile Include="HooGoin\NewEvent.cs" />
     <Compile Include="HooGoin\UserList.cs" />
     <Compile Include="Repositories\HooGoinRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />

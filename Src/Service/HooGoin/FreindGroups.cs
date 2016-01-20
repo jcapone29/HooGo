@@ -8,6 +8,14 @@ namespace Service.HooGoin
 {
    public class FreindGroups
     {
-        public UserInfo[]  FreindList { get; set; }
+       public int  UserID { get; set; }
+        public int  GroupID { get; set; }
+        public string GroupName { get; set; }
+        public int FriendUserID { get; set; }
+        public string UserName { get; set; }
+        public int Phone { get; set; }
+        public string Email { get; set; }
+        public bool  WiGoUser { get; set; }
+        public bool  GroupActive { get; set; }
     }
 }

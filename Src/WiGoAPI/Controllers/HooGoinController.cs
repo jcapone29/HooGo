@@ -46,5 +46,18 @@ namespace WiGoAPI.Controllers
             return success;
         }
 
+        [HttpPost]
+        [Route("newevent")]
+        public async Task<IHttpActionResult> CreateNewEvent(NewEvent eve)
+        {
+            return Ok(await _service.CreateNewEvent(eve));
+        }
+
+        [Route("usergroups")]
+        public async Task<IHttpActionResult> GetUserGroups(int userid)
+        {
+            return Ok(await _service.GetUserGroups(userid));
+        }
+
     }
 }

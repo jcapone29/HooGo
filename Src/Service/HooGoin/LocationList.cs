@@ -15,5 +15,9 @@ namespace Service.HooGoin
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-    }
+        public string LICCATDESC { get; set; }
+        public string ENDTIME { get; set; }
+        public string Location { get; set; }
+
+}
 }
