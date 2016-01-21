@@ -8,7 +8,7 @@ namespace Service.HooGoin
 {
    public class FreindGroups
     {
-       public int  UserID { get; set; }
+        public int  UserID { get; set; }
         public int  GroupID { get; set; }
         public string GroupName { get; set; }
         public int FriendUserID { get; set; }
