@@ -27,7 +27,7 @@ namespace Service.Repositories
 
         public async Task<IEnumerable<LocationList>> GetPlaces()
         {
-            var sql = "SELECT DISTINCT a.businessname, a.descript, e.neighborhood, e.address, e.city, e.state, e.zip, e.LICCATDESC, e.ENDTIME, e.Location" +
+            var sql = "SELECT DISTINCT a.businessname, a.descript, e.neighborhood, e.address, e.city, e.state, e.zip, e.LICCATDESC, e.ENDTIME, e.long, e.lat" +
                 " FROM [dbo].[tblbostonactive] a INNER JOIN [dbo].[tblbostonentertainment] e ON e.dbaname = a.businessname where e.ENDTIME != 'NULL'";
 
             using (var conn = RepositoryBase.GetConnection())
