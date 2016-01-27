@@ -3,6 +3,8 @@ using System.Web.Http;
 using Service;
 using Service.HooGoin;
 using Service.Repositories;
+using YelpSharp;
+
 
 namespace WiGoAPI.Controllers
 {
@@ -57,6 +59,21 @@ namespace WiGoAPI.Controllers
         public async Task<IHttpActionResult> GetUserGroups(int userid)
         {
             return Ok(await _service.GetUserGroups(userid));
+        }
+
+        [HttpGet]
+        [Route("yelpbusiness")]
+        public async Task<IHttpActionResult> YelpBusiness(string city, double? latitude, double? longitude, string searchterm, string state)
+        {
+
+            YelpSearch usersearch = new YelpSearch();
+            usersearch.city = city;
+            usersearch.latitude = latitude;
+            usersearch.longitude = longitude;
+            usersearch.searchterm = searchterm;
+            usersearch.state = state;
+
+            return Ok(await _service.YelpBusiness(usersearch));
         }
 
     }

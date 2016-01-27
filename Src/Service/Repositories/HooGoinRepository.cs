@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using YelpSharp;
+using YelpSharp.Data;
+using YelpSharp.Data.Options;
 using Dapper;
 using Service.HooGoin;
 
@@ -13,6 +16,8 @@ namespace Service.Repositories
 {
    public class HooGoinRepository
     {
+
+        
 
         public async Task<IEnumerable<UserInfo>> GetUserInfo(UserInfo info)
         {
@@ -105,6 +110,47 @@ namespace Service.Repositories
                 return await conn.QueryAsync<EventList>(sql);
             }
         }
+
+        public async Task<List<Business>> YelpBusiness(YelpSearch usersearch) {
+
+            YelpSharp.Options y = new YelpSharp.Options();
+            y.AccessToken = "2-8vixRSeanKoNGqI0zCwxuF4jFAxis3";
+            y.AccessTokenSecret = "SBY3bD2kuL8ShZzk0ft5rLNRYec";
+            y.ConsumerKey = "dZ-2cPotY2h2KBZn0lvjMw";
+            y.ConsumerSecret = "7Wtt3EvIDRcyee8jsDSzvPPtOCk";
+
+            Yelp yelp = new YelpSharp.Yelp(y);
+
+            SearchOptions searchOptions = new SearchOptions();
+
+            CoordinateOptions longlat = new CoordinateOptions()
+            {
+                longitude = usersearch.longitude,
+                latitude = usersearch.latitude,
+            };
+
+            searchOptions.LocationOptions = new LocationOptions()
+            {
+                coordinates = longlat,
+                location = usersearch.city + " " + usersearch.state
+                
+            };
+
+            searchOptions.GeneralOptions = new GeneralOptions()
+            {
+                term = usersearch.searchterm,
+           
+            };
+
+
+
+            SearchResults results = new SearchResults(); 
+                
+                results = await yelp.Search(searchOptions).ConfigureAwait(false);
+            
+
+            return  results.businesses;
+          }
 
     }
 }

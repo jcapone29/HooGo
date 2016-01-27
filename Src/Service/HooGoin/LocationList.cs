@@ -17,7 +17,7 @@ namespace Service.HooGoin
         public string Zip { get; set; }
         public string LICCATDESC { get; set; }
         public string ENDTIME { get; set; }
-        public string Long{ get; set; }
+        public string Long { get; set; }
         public string Lat { get; set; }
 
     }

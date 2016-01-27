@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Service.HooGoin;
 using Service.Repositories;
+using YelpSharp.Data;
 
 namespace Service
 {
@@ -50,6 +51,12 @@ namespace Service
             bool success = _hooRepo.CreateNewUser(info);
 
             return success;
+        }
+
+        public async Task<List<Business>> YelpBusiness(YelpSearch usersearch)
+        {
+
+            return await _hooRepo.YelpBusiness(usersearch);
         }
     }
 }
